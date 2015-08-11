@@ -1,5 +1,7 @@
-package com.existmaster.spring;
+package com.existmaster.spring.contoller;
 
+import com.existmaster.spring.repository.UserRepository;
+import com.existmaster.spring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = "/users")
 public class UserController {
 
     @Autowired

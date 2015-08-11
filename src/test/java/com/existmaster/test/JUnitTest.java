@@ -1,8 +1,8 @@
 package com.existmaster.test;
 
 import com.existmaster.spring.Application;
-import com.existmaster.spring.User;
-import com.existmaster.spring.UserRepository;
+import com.existmaster.spring.model.User;
+import com.existmaster.spring.repository.UserRepository;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import org.apache.http.HttpStatus;

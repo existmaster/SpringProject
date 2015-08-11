@@ -1,5 +1,6 @@
-package com.existmaster.spring;
+package com.existmaster.spring.repository;
 
+import com.existmaster.spring.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
