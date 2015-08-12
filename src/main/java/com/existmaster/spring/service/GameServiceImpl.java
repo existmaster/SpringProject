@@ -1,15 +1,23 @@
 package com.existmaster.spring.service;
 
 import com.existmaster.spring.model.Game;
+import com.existmaster.spring.repository.GameRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by existmaster on 2015. 8. 11..
  */
+@Service
 public class GameServiceImpl implements GameService {
+    @Autowired
+    private GameRepository gr;
 
     @Override
     public Game createGame(int playerNum) {
-        return null;
+        return gr.save(new Game(playerNum));
     }
 
     @Override
