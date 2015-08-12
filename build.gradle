@@ -12,6 +12,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
@@ -38,6 +39,7 @@ dependencies {
     testCompile("com.jayway.restassured:spring-mock-mvc:2.4.1")
     testCompile 'com.jayway.restassured:json-schema-validator:2.4.1'
     testCompile("junit:junit")
+    providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
 }
 
 task wrapper(type: Wrapper) {

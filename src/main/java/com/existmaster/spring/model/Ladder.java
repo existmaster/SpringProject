@@ -1,19 +1,35 @@
 package com.existmaster.spring.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by existmaster on 2015. 8. 11..
  */
-
+@Entity
 public class Ladder {
 
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @ManyToOne
+    @JsonBackReference
+    private Player player;
 
-    private List<Boolean> active;
+    @Column
+    private int time;
+
+    public Ladder() {
+    }
+
+    public Ladder(Player player, int time) {
+        this.player = player;
+        this.time = time;
+    }
 
     public int getId() {
         return id;
@@ -23,11 +39,19 @@ public class Ladder {
         this.id = id;
     }
 
-    public List<Boolean> getActive() {
-        return active;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setActive(List<Boolean> active) {
-        this.active = active;
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }

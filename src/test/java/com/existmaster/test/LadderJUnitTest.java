@@ -2,9 +2,11 @@ package com.existmaster.test;
 
 import com.existmaster.spring.Application;
 import com.existmaster.spring.model.Game;
+import com.existmaster.spring.model.Ladder;
 import com.existmaster.spring.model.Player;
 import com.existmaster.spring.model.User;
 import com.existmaster.spring.repository.GameRepository;
+import com.existmaster.spring.repository.LadderRepository;
 import com.existmaster.spring.repository.PlayerRepository;
 import com.existmaster.spring.repository.UserRepository;
 import com.jayway.restassured.RestAssured;
@@ -48,6 +50,9 @@ public class LadderJUnitTest {
     @Autowired
     PlayerRepository playerRepository;
 
+    @Autowired
+    LadderRepository ladderRepository;
+
     Game game1;
     Game game2;
     Game game3;
@@ -65,7 +70,7 @@ public class LadderJUnitTest {
         game2 = new Game(3);
         game3 = new Game(3);
 
-        gameRepository.deleteAll();
+        //gameRepository.deleteAll();
         gameRepository.save(Arrays.asList(game1, game2, game3));
 
         RestAssured.port = port;
@@ -97,20 +102,14 @@ public class LadderJUnitTest {
 //        Game testGame = gameRepository.save(new Game(2));
 //
 //        Player player1 = playerRepository.save(new Player(testGame, "AAA"));
-//        player1.addLadder(3);
-//        playerRepository.save(player1);
 //
-//        //testGame2.addPlayer(new Player(testGame2, "AAA"));
-//        //testGame2.addPlayer(new Player("BBB"));
+//        Ladder ladder1 = ladderRepository.save(new Ladder(player1, 3));
+//        Ladder ladder2 = ladderRepository.save(new Ladder(player1, 4));
+//        Ladder ladder3 = ladderRepository.save(new Ladder(player2, 2));
 //
-//        //gameRepository.save(testGame);
+//        List<Ladder> testladder = ladderRepository.selectByPlayerId(player1.getPlayerId());
 //
-//        List<Game> list = gameRepository.findAll();
-//
-//        Player testplayer = playerRepository.findOne(player1.getPlayerId());
-//
-//        assertEquals(list.get(3).getPlayer().size(),1);
-//        assertEquals(testplayer.getLadder().size(),1);
+//        assertEquals(testladder.size(),2);
 //
 //    }
 //    @Test

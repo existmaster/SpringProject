@@ -25,13 +25,9 @@ public class Player {
     @Column(name="name")
     private String name;
 
-    //@ElementCollection
-//    @CollectionTable(
-//            name="LADDER",
-//            joinColumns = @JoinColumn(name="player_id")
-//    )
-//    @Column(name="active_time")
-//    private List<Integer> ladder;
+    @OneToMany
+    @JoinColumn(name = "player_id", referencedColumnName = "id")
+    private List<Ladder> ladder;
 
     public Player() {
     }
