@@ -7,10 +7,9 @@ import java.util.List;
 /**
  * Created by existmaster on 2015. 8. 11..
  */
-@Entity
+
 public class Ladder {
 
-    @Id
     private int id;
 
 

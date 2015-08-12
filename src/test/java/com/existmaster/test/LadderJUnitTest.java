@@ -85,18 +85,34 @@ public class LadderJUnitTest {
 
         Game testGame = gameRepository.save(new Game(2));
 
-        playerRepository.save(new Player(testGame, "AAA"));
-
-        //testGame2.addPlayer(new Player(testGame2, "AAA"));
-        //testGame2.addPlayer(new Player("BBB"));
-
-        //gameRepository.save(testGame);
+        Player player1 = playerRepository.save(new Player(testGame, "AAA"));
 
         List<Game> list = gameRepository.findAll();
 
         assertEquals(list.get(3).getPlayer().size(),1);
     }
 
+    //@Test
+//    public void canSaveLadder() {
+//        Game testGame = gameRepository.save(new Game(2));
+//
+//        Player player1 = playerRepository.save(new Player(testGame, "AAA"));
+//        player1.addLadder(3);
+//        playerRepository.save(player1);
+//
+//        //testGame2.addPlayer(new Player(testGame2, "AAA"));
+//        //testGame2.addPlayer(new Player("BBB"));
+//
+//        //gameRepository.save(testGame);
+//
+//        List<Game> list = gameRepository.findAll();
+//
+//        Player testplayer = playerRepository.findOne(player1.getPlayerId());
+//
+//        assertEquals(list.get(3).getPlayer().size(),1);
+//        assertEquals(testplayer.getLadder().size(),1);
+//
+//    }
 //    @Test
 //    public void canSaveUser() {
 //        User user4 = new User("test", "1111", "중성", "바부", "1234@pineone.com");
