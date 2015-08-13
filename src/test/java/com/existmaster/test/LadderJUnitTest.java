@@ -25,6 +25,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
@@ -73,7 +74,7 @@ public class LadderJUnitTest {
         //gameRepository.deleteAll();
         gameRepository.save(Arrays.asList(game1, game2, game3));
 
-        RestAssured.port = port;
+        //RestAssured.port = port;
     }
 
     @Test
@@ -81,20 +82,31 @@ public class LadderJUnitTest {
         Game game4 = new Game(3);
         Game game5 = gameRepository.save(game4);
 
-        assertNotNull(gameRepository.findOne(game5.getGameId()));
+        //assertNotNull(gameRepository.findOne(game5));
 
     }
 
+//    @Test
+//    public void canSavePlayer() {
+//        Game testGame = gameRepository.save(new Game(6));
+//        testGame.addPlayer(new Player("윤성열"));
+//        gameRepository.save(testGame);
+//        Game testGame = gameRepository.save(new Game(2));
+//
+////        Player player1 = playerRepository.save(new Player(testGame, "AAA"));
+////
+////        List<Game> list = gameRepository.findAll();
+////
+////        assertEquals(list.get(3).getPlayer().size(),1);
+//    }
+
     @Test
-    public void canSavePlayer() {
+    public void canCreatePlayer() {
+        Game game = gameRepository.save(new Game(3));
+        Player player = playerRepository.save(new Player(game, "ABCD"));
+        Player player2 = playerRepository.save(new Player(game, "BBBD"));
+        assertEquals(player.getName(), "ABCD");
 
-        Game testGame = gameRepository.save(new Game(2));
-
-        Player player1 = playerRepository.save(new Player(testGame, "AAA"));
-
-        List<Game> list = gameRepository.findAll();
-
-        assertEquals(list.get(3).getPlayer().size(),1);
     }
 
     //@Test

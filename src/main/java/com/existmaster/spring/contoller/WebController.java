@@ -19,9 +19,12 @@ public class WebController {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public ModelAndView hello(){
-        gameService.createGame(3);
         return new ModelAndView("hello").addObject("name", "Sung-Yoel");
     }
 
+    @RequestMapping("/home")
+    public String home(){
+        return "home";
+    }
 
 }

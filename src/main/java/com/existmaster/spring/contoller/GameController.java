@@ -1,12 +1,13 @@
 package com.existmaster.spring.contoller;
 
 import com.existmaster.spring.model.Game;
+import com.existmaster.spring.model.Player;
 import com.existmaster.spring.repository.GameRepository;
+import com.existmaster.spring.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -20,13 +21,36 @@ public class GameController {
     @Autowired
     private GameRepository gr;
 
+    @Autowired
+    private PlayerRepository pr;
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Game createGame(Game game){
+        gr.save(game);
+        return game;
+    }
+
+
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
     public List<Game> getGames(){
         List<Game> games = gr.findAll();
         return games;
     }
 
+
+    //@RequestMapping("/p")
+    public List<Player> getPlayers(){
+        List<Player> player = pr.findAll();
+        return player;
+    }
+
+    //@RequestMapping("/c")
+    public String createDate(){
+        Game game = gr.save(new Game(3));
+        Player player = pr.save(new Player(game, "ABC"));
+        return "Success";
+    }
 
 
 }

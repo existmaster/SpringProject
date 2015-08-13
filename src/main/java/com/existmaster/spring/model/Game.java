@@ -1,39 +1,35 @@
 package com.existmaster.spring.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.*;
 
 /**
  * Created by existmaster on 2015. 8. 11..
  */
 @Entity
-public class Game {
+public class Game{
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int gameId;
+    private int id;
 
-    @Column(name="player_count")
+    @Column
     private int playerCount;
 
-    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="game_id", referencedColumnName = "id")
-    private Collection<Player> player;
+    @OneToMany(mappedBy = "game")
+    private List<Player> player = new ArrayList<Player>();
 
-    public Game() {
+    public int getId() {
+        return id;
     }
 
-    public Game(int playerCount) {
-        this.playerCount = playerCount;
-    }
-
-    public int getGameId() {
-        return gameId;
-    }
-
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPlayerCount() {
@@ -44,7 +40,7 @@ public class Game {
         this.playerCount = playerCount;
     }
 
-    public Collection<Player> getPlayer() {
+    public List<Player> getPlayer() {
         return player;
     }
 
@@ -52,10 +48,14 @@ public class Game {
         this.player = player;
     }
 
+    public Game() {
+    }
+
+    public Game(int playerCount) {
+        this.playerCount = playerCount;
+    }
+
     public void addPlayer(Player p){
-        if(player == null){
-            player = new ArrayList<Player>();
-        }
         player.add(p);
     }
 }

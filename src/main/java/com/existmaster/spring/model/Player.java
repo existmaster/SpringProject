@@ -1,6 +1,8 @@
 package com.existmaster.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,13 +11,14 @@ import java.util.List;
 /**
  * Created by existmaster on 2015. 8. 11..
  */
+
 @Entity
 public class Player {
 
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int playerId;
+    private int id;
 
     @ManyToOne
     @JsonBackReference
@@ -29,50 +32,57 @@ public class Player {
     @JoinColumn(name = "player_id", referencedColumnName = "id")
     private List<Ladder> ladder;
 
+    @Column
+    private List<Boolean> point;
+
+    public List<Boolean> getPoint() {
+        return point;
+    }
+
+    public void setPoint(List<Boolean> point) {
+        this.point = point;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     public Player() {
     }
 
     public Player(Game game, String name) {
+        setGame(game);
+        setName(name);
+    }
+
+    private void setGame(Game game){
         this.game = game;
+        game.addPlayer(this);
+    }
+
+    private void setName(String name){
         this.name = name;
     }
 
-    public Game getGame() {
-        return game;
+    public List<Ladder> getLadder() {
+        return ladder;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setLadder(List<Ladder> ladder) {
+        this.ladder = ladder;
     }
-
-    public int getPlayerId() {
-        return playerId;
+    public void addPoint(boolean p){
+        point.add(p);
     }
-
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
+    public void addLadder(Ladder p){
+        if(ladder == null){
+            ladder = new ArrayList<Ladder>();
+        }
+        ladder.add(p);
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-//    public List<Integer> getLadder() {
-//        return ladder;
-//    }
-//
-//    public void setLadder(List<Integer> ladder) {
-//        this.ladder = ladder;
-//    }
-//
-//    public void addLadder(int p){
-//        if(ladder == null){
-//            ladder = new ArrayList<Integer>();
-//        }
-//        ladder.add(p);
-//    }
 }

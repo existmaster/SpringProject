@@ -1,6 +1,7 @@
 package com.existmaster.spring.service;
 
 import com.existmaster.spring.model.Game;
+import com.existmaster.spring.model.Player;
 
 /**
  * Created by existmaster on 2015. 8. 11..
@@ -17,7 +18,7 @@ public interface GameService {
      * 사다리를 생성한다.
      */
 
-    Game createLadder(int id);
+    void createLadder(Player player);
 
     /*
      * 사다리 결과 값을 반환한다.

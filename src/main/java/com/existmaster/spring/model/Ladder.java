@@ -1,6 +1,8 @@
 package com.existmaster.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
 /**
  * Created by existmaster on 2015. 8. 11..
  */
+@Getter @Setter
 @Entity
 public class Ladder {
 
