@@ -21,6 +21,17 @@ public class Game{
     @OneToMany(mappedBy = "game")
     private List<Player> players = new ArrayList<Player>();
 
+    @ElementCollection
+    private List<String> result = new ArrayList<String>();
+
+    public List<String> getResult() {
+        return result;
+    }
+
+    public void setResult(List<String> result) {
+        this.result = result;
+    }
+
     public int getId() {
         return id;
     }
@@ -55,4 +66,5 @@ public class Game{
     public void addPlayer(Player p){
         players.add(p);
     }
+    public void addResult(String s) {result.add(s);}
 }

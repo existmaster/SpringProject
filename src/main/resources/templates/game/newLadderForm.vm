@@ -1,0 +1,15 @@
+<html>
+<head><title>New Game</title></head>
+<body><form id="gameCreateForm" class="form-horizontal" action="/game/newLadder" method="post">
+
+    <input type="hidden" name="id" value="$!game.id" />
+##    <input type="hidden" name="id" value="$!game.id" />
+
+    <legend>사다리 생성</legend>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">생성하기</button>
+    </div>
+</body>
+</form>
+</html>
