@@ -1,12 +1,15 @@
 <form id="gameCreateForm" class="form-horizontal" action="/spring/game" method="post">
 
-    <input type="hidden" name="id" value="1" />
+    <input type="hidden" name="id" value="$!game.id" />
 
     <legend>게임 신규</legend>
     <div class="control-group">
         <label class="control-label" for="playerCount">플레이어 수</label>
         <div class="controls">
             <input type="text" id="playerCount" name="playerCount" placeholder="1" value="$!game.playerCount">
+        </div>
+        <div class="controls">
+            <input type="text" id="sample" name="sample" placeholder="1" value="$!game.sample">
         </div>
     </div>
 

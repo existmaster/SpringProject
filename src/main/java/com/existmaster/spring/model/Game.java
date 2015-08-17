@@ -8,9 +8,10 @@ import java.util.List;
  * Created by existmaster on 2015. 8. 11..
  */
 @Entity
+@Table(name="GAMES")
 public class Game{
     @Id
-    @Column(name="id")
+    @Column(name="GAME_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -18,7 +19,7 @@ public class Game{
     private int playerCount;
 
     @OneToMany(mappedBy = "game")
-    private List<Player> player = new ArrayList<Player>();
+    private List<Player> players = new ArrayList<Player>();
 
     public int getId() {
         return id;
@@ -37,11 +38,11 @@ public class Game{
     }
 
     public List<Player> getPlayer() {
-        return player;
+        return players;
     }
 
     public void setPlayer(List<Player> player) {
-        this.player = player;
+        this.players = player;
     }
 
     public Game() {
@@ -52,6 +53,6 @@ public class Game{
     }
 
     public void addPlayer(Player p){
-        player.add(p);
+        players.add(p);
     }
 }

@@ -13,18 +13,23 @@ import java.util.List;
  */
 
 @Entity
+@Table(name="PLAYERS")
 public class Player {
 
     @Id
-    @Column(name="id")
+    @Column(name="PLAYER_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne
+    @Column
+    private int position;
+
+    @ManyToOne()
+    @JoinColumn(name="GAME_ID")
     @JsonBackReference
     private Game game;
 
-    @Column(name="name")
+    @Column
     private String name;
 
     @ElementCollection
@@ -46,8 +51,12 @@ public class Player {
         this.id = id;
     }
 
-
     public Player() {
+    }
+
+    public Player(int position, Game game) {
+        setPosition(position);
+        setGame(game);
     }
 
     public Player(Game game, String name) {
@@ -55,9 +64,23 @@ public class Player {
         setName(name);
     }
 
+    public Player(int position, Game game, String name) {
+        this.position = position;
+        this.game = game;
+        this.name = name;
+    }
+
     private void setGame(Game game){
         this.game = game;
         game.addPlayer(this);
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public String getName() {
+        return name;
     }
 
     private void setName(String name){
@@ -66,6 +89,14 @@ public class Player {
 
     public void addPoint(boolean p){
         point.add(p);
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
 }

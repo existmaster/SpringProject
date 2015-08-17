@@ -1,4 +1,4 @@
-package com.existmaster.spring.contoller;
+package com.existmaster.spring.rest.controller;
 
 import com.existmaster.spring.model.Game;
 import com.existmaster.spring.model.Player;
