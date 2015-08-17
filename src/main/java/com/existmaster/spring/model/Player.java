@@ -32,8 +32,19 @@ public class Player {
     @Column
     private String name;
 
+    @Column
+    private int result;
+
     @ElementCollection
     private List<Boolean> point = new ArrayList<Boolean>();
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
 
     public List<Boolean> getPoint() {
         return point;

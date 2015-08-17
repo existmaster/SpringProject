@@ -1,0 +1,30 @@
+<html>
+<head><title>New Game</title></head>
+<body><form id="gameCreateForm" class="form-horizontal" action="/game/getResult" method="post">
+
+    <input type="hidden" name="id" value="$!game.id" />
+##    <input type="hidden" name="id" value="$!game.id" />
+
+    <legend>사다리가 생성되었습니다.</legend>
+
+    <div class="control-group">
+        <label class="control-label" for="playerCount">플레이어 별 사다리 정보</label>
+        <div class="controls">
+            #foreach($player in $game.player)
+                <label> $player.name </label><br>
+            ##<input type="hidden" name="position" value="$i"
+                #foreach($point in $player.point)
+                    $point
+                #end
+                <br>
+            #end
+        </div>
+    </div>
+
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">결과보기</button>
+    </div>
+</body>
+</form>
+</html>

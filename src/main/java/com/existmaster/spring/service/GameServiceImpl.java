@@ -24,13 +24,19 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Player createLadder(Player p) {
+    public Player createLadder(Game g, Player p) {
+        List<Player> players = g.getPlayer();
         for (int time = 0; time < GameConfig.MaxTime; time++) {
-            //todo 인접 플레이어의 사다리를 제외하는 로직 필요
-            if(Math.random()*100 > GameConfig.PointRate)
-                p.addPoint(true);
+            if(Math.random()*100 > GameConfig.PointRate){
+                if(p.getPosition() == 0 ||
+                        (p.getPosition() > 0 && !players.get(p.getPosition()-1).getPoint().get(time)))
+                    p.addPoint(true);
+                else
+                    p.addPoint(false);
+            }
             else
                 p.addPoint(false);
+
         }
         return p;
     }
@@ -38,13 +44,13 @@ public class GameServiceImpl implements GameService {
     @Override
     public int getResult(Game g, Player p) {
         List<Player> players = g.getPlayer();
-        int resultObject = p.getId();
+        int resultObject = p.getPosition();
         for (int time = 0; time < GameConfig.MaxTime; time++) {
             if (resultObject != players.size()-1 &&
-                    players.get(resultObject).getPoint().get(time) == true) {
+                    players.get(resultObject).getPoint().get(time)) {
                 resultObject++;
             } else if(resultObject != 0 &&
-                    players.get(resultObject - 1).getPoint().get(time) == true) {
+                    players.get(resultObject - 1).getPoint().get(time)) {
                 resultObject--;
             }
         }

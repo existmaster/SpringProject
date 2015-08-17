@@ -18,7 +18,7 @@ public interface GameService {
      * 사다리를 생성한다.
      */
 
-    Player createLadder(Player player);
+    Player createLadder(Game game, Player player);
 
     /*
      * 사다리 결과 값을 반환한다.

@@ -52,13 +52,15 @@ public class GameController {
     //@ResponseBody
     @RequestMapping(value = "game/newPlayer")
     public String newPlayerForm(@RequestParam(value="playerName") List<String> names,
-                                @RequestParam(value="resultName") List<String> result,
+                                @RequestParam(value="resultName") List<String> results,
                               Game game, Model model){
 
         Game g = gameRepository.findOne(game.getId());
         for(int i = 0; i < names.size(); i++) {
+            g.addResult(results.get(i));
             playerRepository.save(new Player(i,g,names.get(i)));
         }
+
         //Game result = gameRepository.save(g);
 //        Game g = gameRepository.findOne(game.getId());
 //        for(int i=0;i<g.getPlayerCount();i++)
@@ -67,26 +69,30 @@ public class GameController {
 //        }
 //        Game result = gameRepository.save(g);
 //        model.addAttribute("game", result);
-
+        model.addAttribute("game", g);
         return "game/newLadderForm";
     }
 
-    @ResponseBody
+    //@ResponseBody
     @RequestMapping(value = "game/newLadder")
-    public Game newLadder(Game game, Model model){
+    public String newLadder(Game game, Model model){
         Game g = gameRepository.findOne(game.getId());
 
         for(int i = 0; i < g.getPlayer().size();i++){
-            playerRepository.save(gameService.createLadder(g.getPlayer().get(i)));
+            playerRepository.save(gameService.createLadder(g, g.getPlayer().get(i)));
         }
-
-        return g;
+        model.addAttribute("game", g);
+        return "game/getResultForm";
 
     }
 
+    @ResponseBody
     @RequestMapping(value = "game/getResult")
     public Game getResult(Game game){
         Game g = gameRepository.findOne(game.getId());
+        for(Player p : g.getPlayer()){
+            p.setResult(gameService.getResult(g, p));
+        }
 
         return g;
     }
