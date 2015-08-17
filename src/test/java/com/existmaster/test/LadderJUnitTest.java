@@ -2,16 +2,10 @@ package com.existmaster.test;
 
 import com.existmaster.spring.Application;
 import com.existmaster.spring.model.Game;
-import com.existmaster.spring.model.Ladder;
 import com.existmaster.spring.model.Player;
-import com.existmaster.spring.model.User;
 import com.existmaster.spring.repository.GameRepository;
-import com.existmaster.spring.repository.LadderRepository;
 import com.existmaster.spring.repository.PlayerRepository;
 import com.existmaster.spring.repository.UserRepository;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.http.ContentType;
-import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,11 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.RestAssured.when;
-import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -50,9 +41,6 @@ public class LadderJUnitTest {
 
     @Autowired
     PlayerRepository playerRepository;
-
-    @Autowired
-    LadderRepository ladderRepository;
 
     Game game1;
     Game game2;

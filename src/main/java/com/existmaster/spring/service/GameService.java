@@ -18,12 +18,12 @@ public interface GameService {
      * 사다리를 생성한다.
      */
 
-    void createLadder(Player player);
+    Player createLadder(Player player);
 
     /*
      * 사다리 결과 값을 반환한다.
      */
 
-    int getResult(int playerId);
+    int getResult(Game game, Player player);
 
 }

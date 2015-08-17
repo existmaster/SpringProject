@@ -1,6 +1,6 @@
 <form id="gameCreateForm" class="form-horizontal" action="/spring/game" method="post">
 
-    <input type="hidden" name="id" value="$!game.id" />
+    <input type="hidden" name="id" value="1" />
 
     <legend>게임 신규</legend>
     <div class="control-group">

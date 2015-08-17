@@ -23,17 +23,12 @@ public class Player {
     @ManyToOne
     @JsonBackReference
     private Game game;
-    //private int gameId;
 
     @Column(name="name")
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "player_id", referencedColumnName = "id")
-    private List<Ladder> ladder;
-
-    @Column
-    private List<Boolean> point;
+    @ElementCollection
+    private List<Boolean> point = new ArrayList<Boolean>();
 
     public List<Boolean> getPoint() {
         return point;
@@ -69,20 +64,8 @@ public class Player {
         this.name = name;
     }
 
-    public List<Ladder> getLadder() {
-        return ladder;
-    }
-
-    public void setLadder(List<Ladder> ladder) {
-        this.ladder = ladder;
-    }
     public void addPoint(boolean p){
         point.add(p);
     }
-    public void addLadder(Ladder p){
-        if(ladder == null){
-            ladder = new ArrayList<Ladder>();
-        }
-        ladder.add(p);
-    }
+
 }

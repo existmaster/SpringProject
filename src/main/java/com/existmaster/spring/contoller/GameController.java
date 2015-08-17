@@ -5,10 +5,14 @@ import com.existmaster.spring.model.Player;
 import com.existmaster.spring.repository.GameRepository;
 import com.existmaster.spring.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -26,7 +30,9 @@ public class GameController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Game createGame(Game game){
+    public Game createGame(@ModelAttribute("game") Game game, Model model){
+    //public Game createGame(HttpServletRequest request, HttpServletResponse response){
+        //Game game = new Game(5);
         gr.save(game);
         return game;
     }
