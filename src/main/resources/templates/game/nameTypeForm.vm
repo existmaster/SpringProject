@@ -1,0 +1,20 @@
+<html>
+<head><title>New Game</title></head>
+<body><form id="gameCreateForm" class="form-horizontal" action="/game/nameType" method="post">
+
+##<input type="hidden" name="id" value="$!{game.id}" />
+
+    <legend>이름 저장</legend>
+    <div class="control-group">
+        <label class="control-label" for="playerCount">이름 Type</label>
+        <div class="controls">
+            <input type="text" id="name" name="name">
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">저장</button>
+    </div>
+</body>
+</form>
+</html>

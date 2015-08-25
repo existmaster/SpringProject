@@ -12,7 +12,13 @@
             #foreach($i in [1..$!{game.playerCount}])
                 <label>플레이어 $i : </label>
                 ##<input type="hidden" name="position" value="$i"
-                <input type="text" name="playerName" placeholder="홍길동">
+                ##<input type="text" name="playerName" placeholder="홍길동" value="">
+                <select name="playerName">
+                    #foreach($name in $!{nameType} )
+                        <option value="$name.name">$name.name</option>
+                    #end
+                </select>
+
                 <label>결과 $i</label>
                 <input type="test" name="resultName" placeholder="상품">
                 <br>
